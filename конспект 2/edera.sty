@@ -1,0 +1,211 @@
+% EdEra macros_tools
+% by Artem Ilchuk
+% http://EdEra.com
+% Version 1.0
+% June 2014
+
+\NeedsTeXFormat{LaTeX2e}
+
+% Provide the name of your page, the date it was last updated, and a comment about what it's used for
+\ProvidesPackage{edera}
+
+%%% Работа с русским языком
+\RequirePackage{cmap}					% поиск в PDF
+\RequirePackage{mathtext} 				% русские буквы в формулах
+\RequirePackage[T2A]{fontenc}			% кодировка
+\RequirePackage[utf8]{inputenc}			% кодировка исходного текста
+\RequirePackage[english,ukrainian]{babel}	% локализация и переносы
+\RequirePackage{textcase}
+%%% Дополнительная работа с математикой
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm,mathtools} 
+\RequirePackage{icomma} 
+\RequirePackage{tikz}
+
+%% Свои команды
+
+%%% Работа с картинками
+\RequirePackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+%\RequirePackage{wrapfig} % Обтекание рисунков текстом
+\RequirePackage{titlepic}
+\RequirePackage{color}
+%%% Работа с таблицами
+\RequirePackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+\RequirePackage{longtable}  % Длинные таблицы
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{multirow} % Слияние строк в таблице
+\RequirePackage{colortbl}
+
+\RequirePackage{arydshln}
+% Now paste your code from the preamble here
+
+%Корпоративні кольори
+\definecolor{EdEraorange}{RGB}{247,173,48}
+\definecolor{EdErablue}{RGB}{12,90,145} 
+
+%тип колонки для кольорової таблиці
+\newcolumntype{o}{>{\columncolor{EdEraorange}}c}
+\newcolumntype{b}{>{\columncolor{EdErablue}}c}
+%\newcolumntype{color}[1]{>{\columncolor{#1}}c}
+
+%тип колонки для фіксованої довжини таблиці
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\theoremstyle{definition}\newtheorem{ethm}{\color{EdErablue}{\textbf{Теорема}}}
+\theoremstyle{remark}\newtheorem*{eproof}{\color{EdErablue}{\textbf{Доведення}}}
+\theoremstyle{definition}\newtheorem*{eans}{\textbf{Відповідь}}
+\theoremstyle{remark}\newtheorem*{esol}{\textbf{Розв'язок}}
+\theoremstyle{plain}\newtheorem*{econ}{\textbf{Висновки}}
+
+%\eoz{Текст означення}
+\newcommand{\eoz}[1]{
+\begin{table}[h]
+\begin{tabular}{bl}
+\textcolor{white}{\textbf{Означення}} & \\
+\arrayrulecolor{EdErablue}\hline
+\multicolumn{2}{|l|}{\begin{minipage}{0.95\linewidth}
+\vspace{0.25cm} 
+#1
+\vspace{0.25cm} 
+\end{minipage}}  
+\\ \arrayrulecolor{EdErablue}\hline % % % % % % % % % % % % % % % % % % % % % % % % 
+\end{tabular}
+\end{table}}
+
+%\eadd{Назва після додатково}{Текст}
+\newcommand{\eadd}[2]{
+\begin{table}[h]
+\begin{tabular}{bl}
+\textcolor{white}{\textbf{Додaтково}} & #1 \\
+\arrayrulecolor{EdErablue}\hline
+\arrayrulecolor{EdErablue}\hline
+\arrayrulecolor{EdErablue}\hline
+\multicolumn{2}{l}{\begin{minipage}{\linewidth} \vspace{0.25cm} #2
+\end{minipage}} \vspace{0.25cm} \\
+\arrayrulecolor{EdErablue}\hline 
+\arrayrulecolor{EdErablue}\hline
+\arrayrulecolor{EdErablue}\hline % % % % % % % % % % % % % % % % % % % % % % % % %
+\end{tabular}
+\end{table}}
+
+
+%\ealgorithm{Назва після Авторський алгоритм}{Текст}
+\newcommand{\ealgorithm}[2]{
+%\begin{table}[h]
+\begin{tabular}{ol}
+\textcolor{white}{\textbf{Авторський алгоритм}} & #1 \\
+\arrayrulecolor{EdEraorange}\hline %\hdashline
+\arrayrulecolor{EdEraorange}\hline
+\arrayrulecolor{EdEraorange}\hline 
+\multicolumn{2}{c}{\begin{minipage}{\textwidth} \vspace{0.25cm}#2
+\end{minipage}} \vspace{0.25cm} \\
+\arrayrulecolor{EdEraorange}\hline %\hdashline
+\arrayrulecolor{EdEraorange}\hline 
+\arrayrulecolor{EdEraorange}\hline % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\end{tabular}
+%\end{table}
+}
+
+
+%\ezno{ЗНО}{Текст} 
+\newcommand{\ezno}[2]{
+%\begin{table}[h]
+\begin{tabular}{ol}
+\textcolor{white}{\textbf{ЗНО}} & #1 \\
+\arrayrulecolor{EdEraorange}\hline %\hdashline
+\arrayrulecolor{EdEraorange}\hline
+\arrayrulecolor{EdEraorange}\hline 
+\multicolumn{2}{c}{\begin{minipage}{\textwidth} \vspace{0.25cm}#2
+\end{minipage}} \vspace{0.25cm} \\
+\arrayrulecolor{EdEraorange}\hline %\hdashline
+\arrayrulecolor{EdEraorange}\hline 
+\arrayrulecolor{EdEraorange}\hline % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\end{tabular}
+%\end{table}
+}
+
+%\ebio{Main}{Текст}
+\newcommand{\ebio}[2]
+{
+	\begin{table}[h]
+		\begin{tabular}{bl}
+			\textcolor{white}{\textbf{#1}} &  \\
+			\arrayrulecolor{EdErablue}\hline
+			\arrayrulecolor{EdErablue}\hline 
+			\multicolumn{2}{|l}{\begin{minipage}{\linewidth}
+					\vspace{0.25cm} 
+					#2
+					\vspace{0.25cm} 
+				\end{minipage}} \\
+				% % % % % % % % % % % % % % % % % % % % % % % % %
+			\end{tabular}
+		\end{table}
+}
+
+%\eint{Цікаво}{Текст}
+\newcommand{\eint}[2]{
+	\begin{table}[h]
+		\begin{tabular}{bl}
+			\textcolor{white}{\textbf{Цікаво}} & #1 \\
+			%\arrayrulecolor{EdErablue}\hline
+			\arrayrulecolor{EdErablue}\hline
+			\arrayrulecolor{EdErablue}\hline
+			\multicolumn{2}{l}{\begin{minipage}{\linewidth} \vspace{0.25cm} #2
+				\end{minipage}} \vspace{0.25cm} \\
+				\arrayrulecolor{EdErablue}\hline 
+				\arrayrulecolor{EdErablue}\hline
+				\arrayrulecolor{EdErablue}\hline % % % % % % % % % % % % % % % % % % % % % % % % %
+		\end{tabular}
+	\end{table}
+}
+
+%\erem{Як запам'ятати}{Текст}
+\newcommand{\erem}[2]{
+	%\begin{table}[h]
+	\begin{tabular}{ol}
+		\textcolor{white}{\textbf{Як запам'ятати}} & #1 \\
+		\arrayrulecolor{EdEraorange}\hline %\hdashline
+		\arrayrulecolor{EdEraorange}\hline
+		\arrayrulecolor{EdEraorange}\hline 
+		\multicolumn{2}{c}{\begin{minipage}{\textwidth} \vspace{0.25cm}#2
+			\end{minipage}} \vspace{0.25cm} \\
+			\arrayrulecolor{EdEraorange}\hline %\hdashline
+			\arrayrulecolor{EdEraorange}\hline 
+			\arrayrulecolor{EdEraorange}\hline % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+		\end{tabular}
+		%\end{table}
+}
+
+% Середовище для задачі, 
+%\begin{eprob}{Назва задачі}{Текст задачі}
+%В середині середовища
+%\end{eprob}
+
+\newcounter{tcounter}
+\newenvironment{eprob}[2]{
+\addtocounter{tcounter}{1}
+\begin{flushleft}
+\arrayrulecolor{EdEraorange}
+\begin{tabular}{|op{0.95\textwidth}}
+\textcolor{white}{\textbf{Задача \arabic{tcounter}}}& \MakeTextUppercase{\textbf{#1}}\\
+\end{tabular}
+\vspace{-.78cm}
+\begin{longtable}{|p{\textwidth}}
+\textcolor{white}{\tiny{.}} \newline
+ #2
+\newline
+\textcolor{white}{\tiny{.}}
+\end{longtable}
+\end{flushleft}
+}
+{}
+% Finally, we'll use \endinput to indicate that LaTeX can stop reading this file. LaTeX will ignore anything after this line.
+\endinput
+
+
